@@ -1,0 +1,8 @@
+name: GlovedRPG
+version: '0.0.1'
+main: org.wooper.glovedrpg.GlovedRPG
+api-version: '1.20'
+commands:
+  menu:
+    description: Custom menu for Commands
+    usage: /menu
