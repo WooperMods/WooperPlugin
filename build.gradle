@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.wooper'
-version = '1.0'
+version = '0.0.1'
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ dependencies {
 }
 
 shadowJar {
-    relocate 'fr.mrmicky.fastinv', 'org.wooper.glovedrpg'
+    relocate 'fr.mrmicky.fastinv', 'org.wooper.wooperplugin'
 }
 
 def targetJavaVersion = 17

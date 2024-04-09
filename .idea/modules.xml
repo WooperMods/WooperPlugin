@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GlovedRPG.main.iml" filepath="$PROJECT_DIR$/.idea/modules/GlovedRPG.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GlovedRPG.test.iml" filepath="$PROJECT_DIR$/.idea/modules/GlovedRPG.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WooperPlugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/WooperPlugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WooperPlugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/WooperPlugin.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.wooper.WooperPlugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.wooper.WooperPlugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.wooper.WooperPlugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/org.wooper.WooperPlugin.test.iml" />
     </modules>
   </component>
 </project>

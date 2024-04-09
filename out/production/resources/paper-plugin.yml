@@ -1,6 +1,6 @@
-name: GlovedRPG
+name: WooperPlugin
 version: '0.0.1'
-main: org.wooper.glovedrpg.GlovedRPG
+main: org.wooper.wooperplugin.WooperPlugin
 api-version: '1.20'
 commands:
   menu:

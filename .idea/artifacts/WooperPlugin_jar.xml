@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="WooperPlugin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WooperPlugin_jar</output-path>
+    <root id="archive" name="WooperPlugin.jar">
+      <element id="module-output" name="org.wooper.WooperPlugin.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.9.2/9e51a9f667e1f1311793e0407a5e17b304b981a7/adventure-key-4.9.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/fr.mrmicky/FastInv/3.0.4/f5f96b337627a0b00562039d11ac552efd6626ef/FastInv-3.0.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.3.0/8a2d185275307f1e2ef2adf7152b9a0d1d44c30b/examination-api-1.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.9.2/c80ec9c329c1b4a8bfa850dcecfd8dffbaf3897f/adventure-api-4.9.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.9.2/dc0af2d41491b0d7f5ca546e1935c03806416d5a/adventure-text-serializer-legacy-4.9.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.vankka/enhancedlegacytext/1.0.0/7288dee04a14864f70fd329214080cc3b51b507f/enhancedlegacytext-1.0.0.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/paper-plugin.yml" />
+    </root>
+  </artifact>
+</component>
