@@ -77,7 +77,7 @@ public final class WooperPlugin extends JavaPlugin {
         new MenuInv(this);
         // Initialize Menu
         new Menu(this);
-        // Register the plugin with FastInvManager
+        // Register FastInv with the plugin
         FastInvManager.register(this);
 
     }
