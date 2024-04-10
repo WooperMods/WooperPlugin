@@ -1,5 +1,6 @@
 package org.wooper.wooperplugin.commands;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,6 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.wooper.wooperplugin.Menus.MenuInv;
 import org.wooper.wooperplugin.WooperPlugin;
+
+import java.util.Objects;
 
 import static org.wooper.wooperplugin.WooperPlugin.logInfo;
 
@@ -19,7 +22,10 @@ import static org.wooper.wooperplugin.WooperPlugin.logInfo;
  * The onCommand method checks if the command sender is a player, sends a message to non-player command senders, logs a message indicating that a player has opened the menu, and opens the menu inventory for the player.
  */
 public class Menu implements CommandExecutor {
-
+    
+    
+    MenuInv menuInv = new MenuInv(JavaPlugin.getPlugin(WooperPlugin.class));
+    public static Component menuComponent = WooperPlugin.makeComponent("WooperMenu");
     /**
      * Constructor for the Menu class.
      * This constructor is responsible for registering the "menu" command with the WooperPlugin.
@@ -29,8 +35,10 @@ public class Menu implements CommandExecutor {
      * @param plugin The instance of the WooperPlugin that this Menu is associated with.
      */
     public Menu(WooperPlugin plugin) {
-        plugin.getCommand("menu").setExecutor(this);
+        
+        Objects.requireNonNull(plugin.getCommand("menu")).setExecutor(this);
         logInfo("Registered Menu Command!");
+        
     }
 
     /**
@@ -54,9 +62,9 @@ public class Menu implements CommandExecutor {
             sender.sendMessage("Only players can open menu.");
             return true;
         }
-        logInfo(player.getName() + " opened the menu.");
-        MenuInv menuInv = new MenuInv(JavaPlugin.getPlugin(WooperPlugin.class));
-        player.openInventory(menuInv.getInventory());
+        // logInfo(player.getName() + " opened the menu.");
+        
+        menuInv.openMenu(player);
 
         return true;
     }

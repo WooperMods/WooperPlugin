@@ -2,6 +2,7 @@ package org.wooper.wooperplugin.Menus;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -12,8 +13,7 @@ import org.wooper.wooperplugin.WooperPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.wooper.wooperplugin.WooperPlugin.logInfo;
-import static org.wooper.wooperplugin.WooperPlugin.plugin;
+import static org.wooper.wooperplugin.commands.Menu.menuComponent;
 
 /**
  * The MenuInv class implements the InventoryHolder interface.
@@ -24,7 +24,7 @@ import static org.wooper.wooperplugin.WooperPlugin.plugin;
 public class MenuInv implements InventoryHolder {
 
     private final Inventory inventory;
-
+    
     /**
      * Constructor for the MenuInv class.
      * It creates an inventory with 9 rows (54 slots) and sets various items in specific slots.
@@ -35,17 +35,18 @@ public class MenuInv implements InventoryHolder {
      * @param plugin The instance of the WooperPlugin.
      */
     public MenuInv(WooperPlugin plugin) {
-        this.inventory = plugin.getServer().createInventory(this, 9 * 6);
-        this.inventory.setItem(20, getItem(new ItemStack(Material.NETHER_STAR), "Warps", "/warps"));
-        this.inventory.setItem(21, getItem(new ItemStack(Material.GOLD_INGOT), "Shop", "/shop"));
-        this.inventory.setItem(22, getItem(new ItemStack(Material.GRASS_BLOCK), "Spawn", "/spawn"));
-        this.inventory.setItem(23, getItem(new ItemStack(Material.RED_BED), "Homes", "/homes"));
-        this.inventory.setItem(24, getItem(new ItemStack(Material.COMPASS), "RTP", "/rtp"));
-        this.inventory.setItem(30, getItem(new ItemStack(Material.CRAFTING_TABLE), "Craft", "/craft"));
-        this.inventory.setItem(31, getItem(new ItemStack(Material.WRITABLE_BOOK), "Skills", "/skills"));
-        this.inventory.setItem(32, getItem(new ItemStack(Material.ENDER_CHEST), "Ender Chest", "/ender"));
+        
+        this.inventory = plugin.getServer().createInventory(this, 9 * 6, menuComponent);
+        this.inventory.setItem(20, getItem(new ItemStack(Material.NETHER_STAR), "&b&lWarps", "&a/warps"));
+        this.inventory.setItem(21, getItem(new ItemStack(Material.GOLD_INGOT), "&6&lShop", "&a/shop"));
+        this.inventory.setItem(22, getItem(new ItemStack(Material.GRASS_BLOCK), "&3&lSpawn", "&a/spawn"));
+        this.inventory.setItem(23, getItem(new ItemStack(Material.RED_BED), "&4&lHomes", "&a/homes"));
+        this.inventory.setItem(24, getItem(new ItemStack(Material.COMPASS), "&2&lRTP", "&a/rtp"));
+        this.inventory.setItem(30, getItem(new ItemStack(Material.CRAFTING_TABLE), "&6&lCraft", "&a/craft"));
+        this.inventory.setItem(31, getItem(new ItemStack(Material.WRITABLE_BOOK), "&4&lSkills", "&a/skills"));
+        this.inventory.setItem(32, getItem(new ItemStack(Material.ENDER_CHEST), "&5&lEnder Chest", "&a/ender"));
         // this.inventory.setItem(13, getItem(new ItemStack(Material.EMERALD), "Jobs", "/jobs browse"));
-        logInfo("Menu Created!");
+        
     }
 
     /**
@@ -56,8 +57,12 @@ public class MenuInv implements InventoryHolder {
      */
     @Override
     public @NotNull Inventory getInventory() {
-        logInfo("Returning menu inventory.");
         return this.inventory;
+    }
+    
+    public void openMenu(Player player) {
+        
+        player.openInventory(this.inventory);
     }
 
     /**
@@ -73,10 +78,10 @@ public class MenuInv implements InventoryHolder {
      */
     public static ItemStack getItem(ItemStack item, String name, String... lore) {
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(plugin.makeComponent(name));
+        meta.displayName(WooperPlugin.makeComponent(name));
         List<Component> lores = new ArrayList<>();
         for (String s : lore) {
-            lores.add(plugin.makeComponent(s));
+            lores.add(WooperPlugin.makeComponent(s));
         }
         meta.lore(lores);
         // logger.info("Item created: " + item.getType() + " with name: " + name + " and lore: " + lores + ".");

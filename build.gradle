@@ -29,7 +29,7 @@ dependencies {
 }
 
 shadowJar {
-    relocate 'fr.mrmicky.fastinv', 'org.wooper.wooperplugin'
+    relocate 'fr.mrmicky.fastinv', 'org.wooper.fastinv'
 }
 
 def targetJavaVersion = 17

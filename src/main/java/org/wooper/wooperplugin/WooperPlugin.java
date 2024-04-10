@@ -19,8 +19,6 @@ import java.util.logging.Logger;
  */
 public final class WooperPlugin extends JavaPlugin {
 
-    public static WooperPlugin plugin;
-
     private static Logger logger;
 
     {
@@ -51,11 +49,12 @@ public final class WooperPlugin extends JavaPlugin {
      * This method is used to create a Component from a given text string.
      * It uses the EnhancedLegacyText library to build the Component.
      *
-     * @param text The text string that needs to be converted into a Component.
+     * @param input The text string that needs to be converted into a Component.
      * @return The created Component.
      */
-    public Component makeComponent(String text) {
-        return EnhancedLegacyText.get().buildComponent(text).build();
+    public static Component makeComponent(String input) {
+        
+        return EnhancedLegacyText.get().buildComponent(input).build();
     }
 
     /**
@@ -67,18 +66,18 @@ public final class WooperPlugin extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
-        logInfo("WooperPlugin has been enabled!");
-
         // Initialize TorchHandler
         new TorchHandler(this);
         // Initialize MenuHandler
         new MenuHandler(this);
-        // Initialize MenuInv
-        new MenuInv(this);
         // Initialize Menu
         new Menu(this);
+        // Initialize MenuInv
+        new MenuInv(this);
         // Register FastInv with the plugin
         FastInvManager.register(this);
+        
+        logInfo("WooperPlugin has been loaded!");
 
     }
 

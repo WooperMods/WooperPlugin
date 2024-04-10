@@ -1,5 +1,6 @@
 package org.wooper.wooperplugin.handlers;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,9 +13,12 @@ import org.bukkit.inventory.ItemStack;
 import org.wooper.wooperplugin.Menus.MenuInv;
 import org.wooper.wooperplugin.WooperPlugin;
 
+import java.util.Objects;
+
 import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Material.CHEST;
 import static org.wooper.wooperplugin.WooperPlugin.logInfo;
+import static org.wooper.wooperplugin.commands.Menu.menuComponent;
 
 /**
  * The MenuHandler class implements the Listener interface.
@@ -35,7 +39,6 @@ public class MenuHandler implements Listener {
      */
     public MenuHandler(WooperPlugin plugin) {
         getPluginManager().registerEvents(this, plugin);
-        WooperPlugin.logInfo("MenuHandler has been registered!");
         logInfo("Registered MenuHandler!");
     }
 
@@ -56,14 +59,14 @@ public class MenuHandler implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         Inventory inventory = event.getClickedInventory();
+        Component title = event.getView().title();
+        int slot = event.getSlot();
         assert inventory != null;
-        if (!(inventory.getHolder(false) instanceof MenuInv menuInv)) {
+        if (title != menuComponent) {
             return;
         }
-        event.setCancelled(true);
-
-        if (event.getClickedInventory().getType().equals(InventoryType.CHEST)) {
-            int slot = event.getSlot();
+        
+        if ((Objects.requireNonNull(event.getClickedInventory()).getType().equals(InventoryType.CHEST)) && ((title == menuComponent))) {
 
             if (slot == 20) {
                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
@@ -109,12 +112,13 @@ public class MenuHandler implements Listener {
                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
                 player.closeInventory();
                 player.performCommand("jobs browse");
+            } else {
+                event.setCancelled(true);
             }
-
-        } else {
-            logInfo("Inventory Clicked: " + event.getSlot());
+            
         }
-
+        
+        
     }
 
     /**
@@ -131,7 +135,7 @@ public class MenuHandler implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Inventory inv = player.getInventory();
-        inv.setItem(17, MenuInv.getItem(new ItemStack(CHEST), "Menu", "Click to Open the Menu!"));
+        inv.setItem(17, MenuInv.getItem(new ItemStack(CHEST), "&b&lMenu", "&aClick to Open the Menu!"));
         logInfo("Menu Item added to " + player.getName() + " inventory.");
     }
 
@@ -150,14 +154,12 @@ public class MenuHandler implements Listener {
         Player player = (Player) event.getWhoClicked();
         Inventory inv = event.getView().getBottomInventory();
         int slot = event.getSlot();
-        if (slot != 17 && !(inv.equals(event.getClickedInventory()))) {
-            return;
+        if ((slot == 17) && (inv == event.getClickedInventory())) {
+            event.setCancelled(true);
+            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+            player.closeInventory();
+            player.performCommand("menu");
         }
-
-        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-        player.closeInventory();
-        event.setCancelled(true);
-        player.performCommand("menu");
     }
 
 }
